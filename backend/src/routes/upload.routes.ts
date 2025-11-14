@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   }
 });
 
-const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+const fileFilter = (req: any, file: Express.Multer.File, cb: FileFilterCallback) => {
   const allowedTypes = ['.pdf', '.doc', '.docx'];
   const ext = path.extname(file.originalname).toLowerCase();
   

@@ -52,6 +52,25 @@ const outputDir = path.join(__dirname, '..', process.env.OUTPUT_DIR || 'resume-o
   }
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'ATS Resume Optimizer API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      upload: 'POST /api/upload',
+      parse: 'POST /api/parse',
+      atsScore: 'POST /api/ats-score',
+      enhance: 'POST /api/enhance',
+      generate: 'POST /api/generate-resume',
+      download: 'GET /api/download/:format/:id'
+    },
+    documentation: 'https://github.com/Ojas37/ats-resume-optimizer'
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ 
